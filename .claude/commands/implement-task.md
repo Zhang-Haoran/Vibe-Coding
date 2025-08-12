@@ -1,3 +1,7 @@
+---
+description: 
+---
+
 # Implement Task
 
 Approach task implementation methodically with careful planning and execution.

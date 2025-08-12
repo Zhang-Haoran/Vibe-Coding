@@ -4,23 +4,44 @@
 echo "🎯 Installing Project Rules for Claude Code"
 echo "=========================================="
 
-# Check if running from agent-rules directory
+# Check if running from project directory
 if [ ! -d "project-rules" ]; then
     echo "❌ Error: project-rules directory not found"
-    echo "   Please run this from the agent-rules repository root"
+    echo "   Please run this from the project repository root"
     exit 1
 fi
 
-# Create Claude directory if it doesn't exist
+# Create Claude directories if they don't exist
 mkdir -p ~/.claude
+mkdir -p .claude/commands
 
-# Check if CLAUDE.md exists
+# Install project-specific commands
+echo "📁 Installing project-specific slash commands..."
+for rule_file in project-rules/*.mdc; do
+    if [ -f "$rule_file" ]; then
+        command_name=$(basename "$rule_file" .mdc)
+        command_file=".claude/commands/${command_name}.md"
+        
+        echo "  Installing /${command_name}..."
+        
+        # Convert .mdc to proper slash command format
+        cat > "$command_file" << EOF
+---
+description: $(head -n 5 "$rule_file" | grep -v "^#" | grep -v "^$" | head -n 1 | sed 's/^[[:space:]]*//')
+---
+
+$(cat "$rule_file")
+EOF
+    fi
+done
+
+# Check if global CLAUDE.md exists
 if [ -f ~/.claude/CLAUDE.md ]; then
     echo "📝 Found existing ~/.claude/CLAUDE.md"
     echo "   Adding import for project rules..."
     
     # Check if already imported
-    if grep -q "@.*project-rules" ~/.claude/CLAUDE.md; then
+    if grep -q "@.*project-rules\|@$(pwd)/project-rules" ~/.claude/CLAUDE.md; then
         echo "✓ Project rules already imported"
     else
         # Add import at the end

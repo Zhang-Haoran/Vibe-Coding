@@ -1,3 +1,7 @@
+---
+description: 
+---
+
 # Context Prime
 
 Prime Claude with comprehensive project understanding.

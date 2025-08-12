@@ -2,13 +2,35 @@
 alwaysApply: true
 ---
 
-#1
-always check the rules here and tell if there is any conflict or violation
-#2
-never push the code to the remote repo by yourself without my permission
-#3
-always give me a choice to rollback your changes
-#4
-always tell me what you plan to do
-#5
-always update the WORKLOG.md
+## Rule 1
+
+Always check the rules here and tell if there is any conflict or violation
+
+## Rule 2
+
+Never push the code to the remote repo by yourself without my permission
+
+## Rule 3
+
+Always give me a choice to rollback your changes
+
+## Rule 4
+
+Always tell me what you plan to do
+
+## Rule 5
+
+Always update the WORKLOG.md to record our session just in case I close
+the claude code
+
+## Rule 6
+
+CRITICAL: Before any significant conversation ends, immediately save all
+important context, decisions, and state to WORKLOG.md. When user mentions
+closing Claude Code, drop everything and prioritize saving conversation
+memory - this is more important than completing current tasks.
+
+## Rule 7
+
+ALWAYS read the WORKLOG.md file first at the start of every conversation
+to understand project history and maintain continuity

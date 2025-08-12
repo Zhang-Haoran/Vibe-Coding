@@ -5,13 +5,15 @@ This file contains rules and custom commands to guide Claude AI in handling vari
 ## Global Rules
 
 ### GitHub Issue Creation
+
 Instructions for creating well-structured GitHub issues following best practices and project conventions.
 
 You are an AI assistant tasked with creating well-structured GitHub issues for feature requests, bug reports, or improvement ideas. Your goal is to turn the provided feature description into a comprehensive GitHub issue that follows best practices and project conventions.
 
 Follow these steps to complete the task, make a todo list and think ultrahard:
 
-#### Process:
+#### Process
+
 1. **Research the repository:**
    - Visit the provided repo url and examine the repository's structure, existing issues, and documentation.
    - Look for any CONTRIBUTING.md, ISSUE_TEMPLATE.md, or similar files that contain guidelines for creating issues.
@@ -51,15 +53,18 @@ Update the project's CHANGELOG.md file with a new entry.
 `/add-to-changelog <version> <change_type> <message>`
 
 **Parameters:**
+
 - `<version>`: Version number (e.g., "1.1.0")
 - `<change_type>`: One of: "added", "changed", "deprecated", "removed", "fixed", "security"
 - `<message>`: Description of the change
 
 **Examples:**
+
 - `/add-to-changelog 1.1.0 added "New markdown to BlockDoc conversion feature"`
 - `/add-to-changelog 1.0.2 fixed "Bug in HTML renderer causing incorrect output"`
 
 **Steps:**
+
 1. Check for existing CHANGELOG.md or create if missing
 2. Find or create section for the specified version
 3. Add the new entry under the appropriate change type
@@ -69,6 +74,7 @@ Update the project's CHANGELOG.md file with a new entry.
 
 **Format:**
 Follow [Keep a Changelog](https://keepachangelog.com) format:
+
 - Group changes by type
 - List changes as bullet points
 - Include date for version sections
@@ -94,6 +100,7 @@ Fetch GitHub issue details and create a comprehensive implementation specificati
 10. **Out of Scope** - What won't be addressed in this implementation
 
 **Process:**
+
 1. Fetch issue details using `gh issue view <issue_number>`
 2. Review related code and project structure
 3. Analyze requirements thoroughly
@@ -109,10 +116,12 @@ Fetch GitHub issue details and create a comprehensive implementation specificati
 Streamline bug fixing workflow from issue creation to pull request.
 
 **Before Starting:**
+
 1. **GitHub**: Create an issue with a short descriptive title
 2. **Git**: Create and checkout a feature branch (`git checkout -b fix/<issue-description>`)
 
 **Fix the Bug:**
+
 1. Reproduce the issue
 2. Write failing test that demonstrates the bug
 3. Implement the fix
@@ -121,6 +130,7 @@ Streamline bug fixing workflow from issue creation to pull request.
 6. Review code changes
 
 **On Completion:**
+
 1. **Git**: Commit with descriptive message referencing the issue
    - Format: `fix: <description> (#<issue-number>)`
 2. **Git**: Push the branch to remote repository
@@ -129,6 +139,7 @@ Streamline bug fixing workflow from issue creation to pull request.
    - Add relevant labels and reviewers
 
 **Best Practices:**
+
 - Keep changes focused on the specific bug
 - Include regression tests
 - Update documentation if behavior changes
@@ -144,11 +155,13 @@ Perform comprehensive code quality and security checks.
 Run `npm run check` (or project-specific check command) and resolve any resulting errors.
 
 **Important:**
+
 - DO NOT commit any code during this process
 - DO NOT change version numbers
 - Focus only on fixing issues identified by checks
 
 **Common Checks Include:**
+
 1. **Linting**: Code style and syntax errors
 2. **Type Checking**: TypeScript/Flow type errors
 3. **Unit Tests**: Failing test cases
@@ -157,6 +170,7 @@ Run `npm run check` (or project-specific check command) and resolve any resultin
 6. **Build Verification**: Compilation errors
 
 **Process:**
+
 1. Run the check command
 2. Analyze output for errors and warnings
 3. Fix issues in priority order:
@@ -168,6 +182,7 @@ Run `npm run check` (or project-specific check command) and resolve any resultin
 5. Continue until all checks pass
 
 **For Different Project Types:**
+
 - **JavaScript/TypeScript**: `npm run check` or `yarn check`
 - **Python**: `black`, `isort`, `flake8`, `mypy`
 - **Rust**: `cargo check`, `cargo clippy`
@@ -184,6 +199,7 @@ Fix all code formatting and quality issues in the entire codebase.
 Fix all `black`, `isort`, `flake8`, and `mypy` issues
 
 **Steps:**
+
 1. **Format with Black**: `black .`
 2. **Sort imports with isort**: `isort .`
 3. **Fix flake8 issues**: `flake8 . --extend-ignore=E203`
@@ -193,11 +209,13 @@ Fix all `black`, `isort`, `flake8`, and `mypy` issues
 Fix all ESLint, Prettier, and TypeScript issues
 
 **Steps:**
+
 1. **Format with Prettier**: `npx prettier --write .`
 2. **Fix ESLint issues**: `npx eslint . --fix`
 3. **Check TypeScript**: `npx tsc --noEmit`
 
 **General Process:**
+
 1. Run automated formatters first
 2. Fix remaining linting issues manually
 3. Resolve type checking errors
@@ -205,6 +223,7 @@ Fix all ESLint, Prettier, and TypeScript issues
 5. Review changes before committing
 
 **Common Issues:**
+
 - Import order conflicts between tools
 - Line length violations
 - Unused imports/variables
@@ -256,6 +275,7 @@ Perform advanced code analysis with multiple inspection options.
    - Missing edge cases
 
 **Process:**
+
 1. Select analysis type based on need
 2. Run appropriate tools and inspections
 3. Generate comprehensive report
@@ -263,6 +283,7 @@ Perform advanced code analysis with multiple inspection options.
 5. Prioritize improvements by impact
 
 **Output Format:**
+
 - Executive summary
 - Detailed findings
 - Risk assessment
@@ -278,6 +299,7 @@ Generate 3 commit message suggestions based on the staged changes, then automati
 Follow conventional commit format with appropriate emojis and create descriptive messages that explain the purpose of changes. Skip the manual message selection step to streamline the commit process.
 
 **Steps:**
+
 1. Run `git status` to see staged changes
 2. Generate 3 commit message suggestions following conventional commit format
 3. Automatically select the first suggestion
@@ -285,6 +307,7 @@ Follow conventional commit format with appropriate emojis and create descriptive
 5. Exclude Claude co-authorship footer from commits
 
 **Commit Types:**
+
 - ✨ feat: New features
 - 🐛 fix: Bug fixes  
 - 📝 docs: Documentation changes
@@ -301,16 +324,19 @@ Follow conventional commit format with appropriate emojis and create descriptive
 Create well-formatted commits with conventional commit messages and emojis.
 
 **Features:**
+
 - Runs pre-commit checks by default (lint, build, generate docs)
 - Automatically stages files if none are staged
 - Uses conventional commit format with descriptive emojis
 - Suggests splitting commits for different concerns
 
 **Usage:**
+
 - `/commit` - Standard commit with pre-commit checks
 - `/commit --no-verify` - Skip pre-commit checks
 
 **Commit Types:**
+
 - ✨ feat: New features
 - 🐛 fix: Bug fixes
 - 📝 docs: Documentation changes
@@ -325,6 +351,7 @@ Create well-formatted commits with conventional commit messages and emojis.
 - 🔒 security: Security improvements
 
 **Process:**
+
 1. Check for staged changes (`git status`)
 2. If no staged changes, review and stage appropriate files
 3. Run pre-commit checks (unless --no-verify)
@@ -335,6 +362,7 @@ Create well-formatted commits with conventional commit messages and emojis.
 8. Execute commit
 
 **Best Practices:**
+
 - Keep commits atomic and focused
 - Write in imperative mood ("Add feature" not "Added feature")
 - Explain why, not just what
@@ -348,6 +376,7 @@ Create well-formatted commits with conventional commit messages and emojis.
 Prime Claude with comprehensive project understanding.
 
 **Standard Context Loading:**
+
 1. Read README.md for project overview
 2. Read CLAUDE.md for AI-specific instructions
 3. List project files excluding ignored paths
@@ -355,6 +384,7 @@ Prime Claude with comprehensive project understanding.
 5. Understand project structure and conventions
 
 **Steps:**
+
 1. **Project Overview**:
    - Read README.md
    - Identify project type and purpose
@@ -381,6 +411,7 @@ Prime Claude with comprehensive project understanding.
    - Review contribution guidelines
 
 **Advanced Options:**
+
 - Load specific subsystem context
 - Focus on particular technology stack
 - Include recent commit history
@@ -388,6 +419,7 @@ Prime Claude with comprehensive project understanding.
 
 **Output:**
 Establish clear understanding of:
+
 - Project goals and constraints
 - Technical architecture
 - Development workflow
@@ -402,6 +434,7 @@ Systematic approach for continuously improving AI assistant rules based on emerg
 **Rule Improvement Triggers:**
 
 **Create New Rules When:**
+
 - A new technology/pattern is used in 3+ files
 - Common bugs could be prevented by a rule
 - Code reviews repeatedly mention the same feedback  
@@ -409,6 +442,7 @@ Systematic approach for continuously improving AI assistant rules based on emerg
 - A complex task requires consistent approach
 
 **Update Existing Rules When:**
+
 - Better examples exist in the codebase
 - Additional edge cases are discovered
 - Related rules have been updated
@@ -424,6 +458,7 @@ Systematic approach for continuously improving AI assistant rules based on emerg
 **Rule Quality Framework:**
 
 Each rule should follow this structure:
+
 - **Purpose**: Brief description of what this rule achieves
 - **When to Apply**: Specific scenarios, trigger conditions, prerequisites
 - **Implementation**: Basic and advanced patterns with code examples
@@ -431,6 +466,7 @@ Each rule should follow this structure:
 - **References**: Related rules and external docs
 
 **Quality Checklist:**
+
 - [ ] **Actionable**: Provides clear, implementable guidance
 - [ ] **Specific**: Avoids vague recommendations
 - [ ] **Tested**: Examples come from working code
@@ -439,6 +475,7 @@ Each rule should follow this structure:
 - [ ] **Linked**: Cross-references related rules
 
 **Continuous Improvement Workflow:**
+
 1. **Collection Phase**: Daily development notes, weekly review
 2. **Analysis Phase**: Pattern extraction, impact assessment
 3. **Documentation Phase**: Rule creation process
@@ -492,6 +529,7 @@ Guide for creating new custom Claude commands with proper structure.
    - **Notes**: Special considerations
 
 **Template:**
+
 ```markdown
 # Command Name
 
@@ -515,6 +553,7 @@ Brief description of what this command does.
 ```
 
 **Best Practices:**
+
 - Keep commands focused and single-purpose
 - Include parameter validation
 - Provide helpful error messages
@@ -529,6 +568,7 @@ Brief description of what this command does.
 Create comprehensive documentation for specified components or features.
 
 **Analysis Areas:**
+
 1. Code structure and purpose
 2. Inputs, outputs, and behavior
 3. User interaction flows
@@ -550,6 +590,7 @@ Create comprehensive documentation for specified components or features.
 - **Related Components/Features**: Links to related documentation
 
 **Process:**
+
 1. Analyze the target code thoroughly
 2. Identify all public interfaces
 3. Document expected behaviors
@@ -559,6 +600,7 @@ Create comprehensive documentation for specified components or features.
 7. Ensure clarity, completeness, and actionability
 
 **Output Formats:**
+
 - Markdown for general documentation
 - JSDoc/TSDoc for code comments
 - API documentation format
@@ -572,6 +614,7 @@ Create comprehensive documentation for specified components or features.
 Guidelines for creating and maintaining Cursor rules to ensure consistency and effectiveness.
 
 **Required Rule Structure:**
+
 ```markdown
 ---
 description: Clear, one-line description of what the rule enforces
@@ -585,12 +628,14 @@ alwaysApply: boolean
 ```
 
 **File References:**
+
 - Use `[filename](mdc:path/to/file)` to reference files
 - Example: `[prisma.mdc](mdc:.cursor/rules/prisma.mdc)` for rule references
 - Example: `[schema.prisma](mdc:prisma/schema.prisma)` for code references
 
 **Code Examples:**
 Use language-specific code blocks:
+
 ```typescript
 // ✅ DO: Show good examples
 const goodExample = true;
@@ -600,6 +645,7 @@ const badExample = false;
 ```
 
 **Rule Content Guidelines:**
+
 - Start with high-level overview
 - Include specific, actionable requirements
 - Show examples of correct implementation
@@ -607,12 +653,14 @@ const badExample = false;
 - Keep rules DRY by referencing other rules
 
 **Rule Maintenance:**
+
 - Update rules when new patterns emerge
 - Add examples from actual codebase
 - Remove outdated patterns
 - Cross-reference related rules
 
 **Best Practices:**
+
 - Use bullet points for clarity
 - Keep descriptions concise
 - Include both DO and DON'T examples
@@ -659,6 +707,7 @@ Use the "Five Whys" root cause analysis technique to deeply understand problems.
 **Solution**: Implement streaming parser and improve requirements process
 
 **Best Practices:**
+
 - Focus on process, not people
 - Look for systemic issues
 - Document the analysis
@@ -710,6 +759,7 @@ Approach task implementation methodically with careful planning and execution.
    - Consider future maintenance
 
 **Checklist:**
+
 - [ ] Requirements fully understood
 - [ ] Approach documented
 - [ ] Tests written
@@ -728,6 +778,7 @@ Generate Mermaid diagrams for visualizing code structure and relationships.
 **Common Diagram Types:**
 
 1. **Entity Relationship Diagrams** - For database schemas and data models:
+
 ```
 erDiagram
     CUSTOMER ||--o{ ORDER : places
@@ -735,6 +786,7 @@ erDiagram
 ```
 
 2. **Flow Charts** - For process and logic flow:
+
 ```
 flowchart TD
     A[Start] --> B{Decision}
@@ -743,6 +795,7 @@ flowchart TD
 ```
 
 3. **Sequence Diagrams** - For interaction flows:
+
 ```
 sequenceDiagram
     Client->>Server: Request
@@ -752,6 +805,7 @@ sequenceDiagram
 ```
 
 4. **Class Diagrams** - For object-oriented design:
+
 ```
 classDiagram
     class Animal {
@@ -762,6 +816,7 @@ classDiagram
 ```
 
 **Process:**
+
 1. Analyze source files (SQL, code, docs)
 2. Extract entities and relationships
 3. Generate appropriate diagram type
@@ -773,6 +828,7 @@ classDiagram
 Run `npx -p @mermaid-js/mermaid-cli mmdc -i <input>.md -o test.md`
 
 **Best Practices:**
+
 - Keep diagrams focused and readable
 - Use consistent naming conventions
 - Group related entities
@@ -836,6 +892,7 @@ Comprehensive pull request review from multiple perspectives.
    - **Action**: Ensure delightful user experience
 
 **Review Process:**
+
 1. Read PR description and linked issues
 2. Review code changes systematically
 3. Test functionality locally if applicable
@@ -854,6 +911,7 @@ Generate LLM-optimized documentation with concrete file references and flexible 
 
 **Task:**
 Create documentation that allows humans and LLMs to:
+
 - **Understand project purpose** - what the project does and why
 - **Get architecture overview** - how the system is organized
 - **Build on all platforms** - build instructions with file references
@@ -865,19 +923,22 @@ Create documentation that allows humans and LLMs to:
 **Required Documentation Structure:**
 
 Each document MUST include:
+
 1. **Timestamp Header** - Hidden comment with last update timestamp
-2. **Brief Overview** (2-3 paragraphs max) 
+2. **Brief Overview** (2-3 paragraphs max)
 3. **Key Files & Examples** - Concrete file references for each major topic
 4. **Common Workflows** - Practical guidance with file locations
 5. **Reference Information** - Quick lookup tables with file paths
 
 **Timestamp Format:**
 Each generated file MUST start with:
+
 ```
 <!-- Generated: YYYY-MM-DD HH:MM:SS UTC -->
 ```
 
 **Process:**
+
 1. **Analyze the codebase systematically** across 7 key areas
 2. **Create or update docs** in `docs/*.md` with concrete file references
 3. **Synthesize final documentation** into a minimal, LLM-friendly README.md
@@ -886,6 +947,7 @@ Each generated file MUST start with:
 **Analysis Methodology:**
 
 For each area, agents should:
+
 1. **Examine key files**: Look for build configs, test files, deployment scripts, main source files
 2. **Extract file references**: Note specific files, line numbers, and examples
 3. **Identify patterns**: Find repeated structures, naming conventions, common workflows
@@ -894,12 +956,14 @@ For each area, agents should:
 **Critical Requirements:**
 
 **LLM-OPTIMIZED FORMAT:**
+
 - **Token efficient**: Avoid redundant explanations, focus on essential information
 - **Concrete file references**: Always include specific file paths, line numbers when helpful
 - **Flexible formatting**: Use subsections, code blocks, examples instead of rigid step-by-step
 - **Pattern examples**: Show actual code from the codebase, not generic examples
 
 **NO DUPLICATION:**
+
 - Each piece of information appears in EXACTLY ONE file
 - Build information only in build-system.md
 - Code style and patterns only in development.md
@@ -908,6 +972,7 @@ For each area, agents should:
 
 **FILE REFERENCE FORMAT:**
 Always include specific file references:
+
 ```
 **Core System** - Core implementation in src/core.h (lines 15-45), platform backends in src/platform/
 
@@ -918,6 +983,7 @@ Always include specific file references:
 
 **PRACTICAL EXAMPLES:**
 Use actual code from the codebase:
+
 ```c
 // From src/example.h:23-27
 typedef struct {
@@ -926,3 +992,7 @@ typedef struct {
     int count;
 } ExampleState;
 ```
+
+# Project Rules
+
+@/c/Users/haora/Desktop/Vibe-Coding/project-rules

@@ -39,18 +39,21 @@ Vibe-Coding/
 ## 💡 快速使用指南
 
 ### 分析类命令 📊
+
 - **问题分析**: `/analyze-issue` → 创建实现规范
 - **根本原因**: `/five` → 五个为什么分析法
 - **代码评估**: `/code-analysis` → 质量、性能、安全分析
 - **项目理解**: `/context-prime` → 加载项目上下文
 
 ### 实现类命令 🔧  
+
 - **任务实现**: `/implement-task` → 有计划的实现方法
 - **Bug修复**: `/bug-fix` → 完整的修复工作流
 - **文档创建**: `/create-docs` → 生成完整文档
 - **图表生成**: `/mermaid` → 各种可视化图表
 
 ### 质量类命令 🎯
+
 - **代码检查**: `/check` → 运行所有质量检查
 - **代码格式**: `/clean` → 修复格式问题
 - **标准提交**: `/commit` → 规范的Git提交
@@ -58,11 +61,13 @@ Vibe-Coding/
 - **代码审查**: `/pr-review` → 多角度PR审查
 
 ### 文档类命令 📝
+
 - **变更日志**: `/add-to-changelog <version> <type> <message>`
 - **项目文档**: `/update-docs` → 生成7个文档文件
 - **问题创建**: `/github-issue-creation` → 标准化问题
 
 ### 系统类命令 🔄
+
 - **创建命令**: `/create-command` → 新命令开发指南
 - **持续改进**: `/continuous-improvement` → 规则改进系统
 - **规则管理**: `/cursor-rules-meta-guide` → Cursor规则

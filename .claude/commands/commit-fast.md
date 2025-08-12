@@ -1,3 +1,7 @@
+---
+description: 
+---
+
 # Fast Commit Task
 
 Generate 3 commit message suggestions based on the staged changes, then automatically use the first suggestion without user confirmation.
