@@ -1,3 +1,9 @@
+---
+description: Generate LLM-optimized documentation with concrete file references
+globs: **/*
+alwaysApply: false
+---
+
 # Update Documentation
 
 You will generate LLM-optimized documentation with concrete file references and flexible formatting.

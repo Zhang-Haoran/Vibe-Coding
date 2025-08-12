@@ -1,3 +1,9 @@
+---
+description: Generate Mermaid diagrams for visualizing code structure and relationships
+globs: **/*
+alwaysApply: false
+---
+
 # Mermaid Diagram Generation
 
 Generate Mermaid diagrams for visualizing code structure and relationships.

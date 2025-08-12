@@ -1,3 +1,9 @@
+---
+description: Prime Claude with comprehensive project understanding
+globs: **/*
+alwaysApply: false
+---
+
 # Context Prime
 
 Prime Claude with comprehensive project understanding.

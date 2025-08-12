@@ -1,3 +1,9 @@
+---
+description: Streamline bug fixing workflow from issue creation to pull request
+globs: **/*
+alwaysApply: false
+---
+
 # Bug Fix
 
 Streamline bug fixing workflow from issue creation to pull request.

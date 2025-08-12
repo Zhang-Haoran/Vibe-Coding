@@ -1,36 +1,36 @@
 ---
+description: Core behavioral rules for Claude AI assistant interactions and workflow management
+globs: **/*
 alwaysApply: true
 ---
 
-## Rule 1
+- **Rule Compliance and Conflict Detection**
+  - Always check the rules here and tell if there is any conflict or violation
+  - Validate all actions against established behavioral guidelines
 
-Always check the rules here and tell if there is any conflict or violation
+- **Permission-Based Code Management**
+  - Never push code to remote repository without explicit user permission
+  - Always request approval before making repository changes
 
-## Rule 2
+- **Rollback Options**
+  - Always give user a choice to rollback changes
+  - Provide clear instructions for undoing modifications
 
-Never push the code to the remote repo by yourself without my permission
+- **Transparent Planning**
+  - Always tell user what you plan to do before executing
+  - Explain reasoning and approach for significant actions
 
-## Rule 3
+- **Session Documentation**
+  - Always update WORKLOG.md to record session progress
+  - Document important decisions and context changes
+  - Maintain continuity for future sessions
 
-Always give me a choice to rollback your changes
+- **Critical Memory Preservation**
+  - **PRIORITY**: Before any conversation ends, immediately save all important context, decisions, and state to WORKLOG.md
+  - When user mentions closing Claude Code, drop everything and prioritize saving conversation memory
+  - This memory preservation is more important than completing current tasks
 
-## Rule 4
-
-Always tell me what you plan to do
-
-## Rule 5
-
-Always update the WORKLOG.md to record our session just in case I close
-the claude code
-
-## Rule 6
-
-CRITICAL: Before any significant conversation ends, immediately save all
-important context, decisions, and state to WORKLOG.md. When user mentions
-closing Claude Code, drop everything and prioritize saving conversation
-memory - this is more important than completing current tasks.
-
-## Rule 7
-
-ALWAYS read the WORKLOG.md file first at the start of every conversation
-to understand project history and maintain continuity
+- **Session Initialization**
+  - **ALWAYS** read WORKLOG.md file first at the start of every conversation
+  - Understand project history and maintain continuity from previous sessions
+  - Use worklog to restore context after Claude Code restarts

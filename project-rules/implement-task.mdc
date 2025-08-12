@@ -1,3 +1,9 @@
+---
+description: Approach task implementation methodically with careful planning and execution
+globs: **/*
+alwaysApply: false
+---
+
 # Implement Task
 
 Approach task implementation methodically with careful planning and execution.

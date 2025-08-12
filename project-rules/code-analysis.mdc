@@ -1,3 +1,9 @@
+---
+description: Perform advanced code analysis with multiple inspection options
+globs: **/*
+alwaysApply: false
+---
+
 # Code Analysis
 
 Perform advanced code analysis with multiple inspection options.

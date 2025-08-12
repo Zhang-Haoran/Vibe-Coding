@@ -1,3 +1,9 @@
+---
+description: Perform comprehensive code quality and security checks
+globs: **/*
+alwaysApply: false
+---
+
 # Check
 
 Perform comprehensive code quality and security checks.

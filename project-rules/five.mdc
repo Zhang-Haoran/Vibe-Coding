@@ -1,3 +1,9 @@
+---
+description: Use Five Whys root cause analysis technique to deeply understand problems
+globs: **/*
+alwaysApply: false
+---
+
 # Five Whys Analysis
 
 Use the "Five Whys" root cause analysis technique to deeply understand problems.

@@ -1,6 +1,16 @@
+---
+description: Create well-formatted commits with conventional commit messages and emojis
+globs: **/*
+alwaysApply: false
+---
+
 # Commit
 
-Create well-formatted commits with conventional commit messages and emojis.
+- **Create well-formatted commits with conventional commit messages and emojis**
+  - Runs pre-commit checks by default (lint, build, generate docs)
+  - Automatically stages files if none are staged
+  - Uses conventional commit format with descriptive emojis
+  - Suggests splitting commits for different concerns
 
 ## Features
 

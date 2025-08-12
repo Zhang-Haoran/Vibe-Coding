@@ -1,3 +1,9 @@
+---
+description: Create comprehensive documentation for specified components or features
+globs: **/*
+alwaysApply: false
+---
+
 # Create Docs
 
 Create comprehensive documentation for specified components or features.

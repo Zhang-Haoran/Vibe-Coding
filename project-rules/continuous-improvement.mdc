@@ -1,4 +1,10 @@
 ---
+description: Systematic approach for continuously improving AI assistant rules
+globs: **/*
+alwaysApply: false
+---
+
+---
 description: Systematic approach for continuously improving AI assistant rules based on emerging patterns and best practices
 globs: ""
 alwaysApply: false

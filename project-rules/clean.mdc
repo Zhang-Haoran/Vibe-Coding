@@ -1,3 +1,9 @@
+---
+description: Fix all code formatting and quality issues in the entire codebase
+globs: **/*
+alwaysApply: false
+---
+
 # Clean
 
 Fix all code formatting and quality issues in the entire codebase.
