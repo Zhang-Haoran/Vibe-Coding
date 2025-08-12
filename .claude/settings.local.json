@@ -12,7 +12,9 @@
       "Bash(py --version)",
       "Bash(py -m pip install:*)",
       "Bash(py -m uvicorn:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(start index.html)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }
