@@ -1,3 +1,7 @@
+# Auto-read Worklog Hook
+[session-start]
+hook = "cat WORKLOG.md"
+
 # Claude AI Assistant Rules and Commands
 
 This file contains rules and custom commands to guide Claude AI in handling various development tasks effectively.

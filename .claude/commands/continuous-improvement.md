@@ -3,7 +3,6 @@ description: ---
 ---
 
 ---
-
 description: Systematic approach for continuously improving AI assistant rules based on emerging patterns and best practices
 globs: ""
 alwaysApply: false
