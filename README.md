@@ -67,25 +67,6 @@ Vibe-Coding/
 - **持续改进**: `/continuous-improvement` → 规则改进系统
 - **规则管理**: `/cursor-rules-meta-guide` → Cursor规则
 
-## 🎯 常用工作流
-
-```mermaid
-graph TD
-    A[开始任务] --> B{任务类型}
-    B -->|新功能| C[/context-prime]
-    B -->|Bug修复| D[/bug-fix]
-    B -->|代码审查| E[/pr-review]
-    
-    C --> F[/implement-task]
-    F --> G[/check]
-    G --> H[/commit]
-    
-    D --> I[/test修复]
-    I --> G
-    
-    E --> J[反馈和改进]
-```
-
 ## ⚡ 提交类型参考
 
 | 表情符号 | 类型 | 说明 |

@@ -1,0 +1,10 @@
+---
+alwaysApply: true
+---
+
+#1
+always check the rules here and tell if there is any conflict or violation
+#2
+never push the code to the remote repo by yourself without my permission
+#3
+always give me a choice to rollback your changes
