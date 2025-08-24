@@ -1,160 +1,161 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameStore } from '../stores/gameStore';
-import { Play, BookOpen, Settings, Trophy, HelpCircle, Save } from 'lucide-react';
+import { Play, BookOpen, Trophy, Settings, HelpCircle, TestTube } from 'lucide-react';
 
 const MainMenu: React.FC = () => {
 	const navigate = useNavigate();
-	const { startNewGame, loadGame } = useGameStore();
-	const [showLoadGame, setShowLoadGame] = useState(false);
+	const { startNewGame, continueGame } = useGameStore();
 
-	const handleNewGame = () => {
+	const handleStartNewGame = () => {
 		startNewGame();
-		navigate('/map');
+		navigate('/game-map');
 	};
 
 	const handleContinueGame = () => {
-		const savedGame = localStorage.getItem('legacy-guardians-save');
-		if (savedGame) {
-			try {
-				const gameData = JSON.parse(savedGame);
-				loadGame(gameData);
-				navigate('/map');
-			} catch (error) {
-				console.error('加载游戏失败:', error);
-				alert('加载游戏失败，请重新开始游戏');
-			}
-		}
+		continueGame();
+		navigate('/game-map');
 	};
 
-	const handleLoadGame = () => {
-		setShowLoadGame(!showLoadGame);
+	const handleNavigateTo = (path: string) => {
+		navigate(path);
 	};
-
-	const menuItems = [
-		{
-			icon: <Play className="w-8 h-8" />,
-			title: '开始新游戏',
-			description: '踏上财富守护者的冒险之旅',
-			action: handleNewGame,
-			color: 'from-blue-500 to-purple-600',
-			iconColor: 'text-blue-500'
-		},
-		{
-			icon: <Save className="w-8 h-8" />,
-			title: '继续游戏',
-			description: '继续之前的冒险',
-			action: handleContinueGame,
-			color: 'from-green-500 to-teal-600',
-			iconColor: 'text-green-500'
-		},
-		{
-			icon: <BookOpen className="w-8 h-8" />,
-			title: '学习中心',
-			description: '学习财商知识和投资技巧',
-			action: () => navigate('/learning'),
-			color: 'from-purple-500 to-pink-600',
-			iconColor: 'text-purple-500'
-		},
-		{
-			icon: <Trophy className="w-8 h-8" />,
-			title: '成就系统',
-			description: '查看已获得的徽章和成就',
-			action: () => navigate('/portfolio'),
-			color: 'from-yellow-500 to-orange-600',
-			iconColor: 'text-yellow-500'
-		},
-		{
-			icon: <Settings className="w-8 h-8" />,
-			title: '游戏设置',
-			description: '调整游戏参数和家长控制',
-			action: () => navigate('/settings'),
-			color: 'from-gray-500 to-slate-600',
-			iconColor: 'text-gray-500'
-		},
-		{
-			icon: <HelpCircle className="w-8 h-8" />,
-			title: '游戏帮助',
-			description: '了解游戏规则和操作方法',
-			action: () => alert('游戏帮助功能开发中...'),
-			color: 'from-indigo-500 to-blue-600',
-			iconColor: 'text-indigo-500'
-		}
-	];
 
 	return (
-		<div className="min-h-screen flex items-center justify-center py-12">
-			<div className="max-w-6xl mx-auto px-4">
+		<div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-6">
+			<div className="max-w-4xl w-full">
 				{/* 游戏标题 */}
 				<div className="text-center mb-12">
-					<h1 className="text-6xl font-bold text-gradient mb-4">
-						🎮 财富守护者
+					<h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 mb-4">
+						财富守护者：卡牌远征
 					</h1>
-					<h2 className="text-2xl text-gray-600 mb-6">
-						卡牌远征
-					</h2>
-					<p className="text-lg text-gray-500 max-w-2xl mx-auto">
-						在游戏中学习投资理财，成为真正的财富守护者！
+					<p className="text-xl text-gray-600 max-w-2xl mx-auto">
+						让财商教育变得有趣而有效！🎓💰
 					</p>
 				</div>
 
-				{/* 主菜单网格 */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-					{menuItems.map((item, index) => (
-						<div
-							key={index}
-							onClick={item.action}
-							className="group cursor-pointer transform transition-all duration-300 hover:scale-105"
-						>
-							<div className={`bg-gradient-to-br ${item.color} rounded-2xl p-8 text-white shadow-lg hover:shadow-xl transition-shadow duration-300`}>
-								<div className="flex flex-col items-center text-center space-y-4">
-									<div className={`${item.iconColor} bg-white/20 p-4 rounded-full`}>
-										{item.icon}
-									</div>
-									<h3 className="text-xl font-bold">{item.title}</h3>
-									<p className="text-white/80 text-sm leading-relaxed">
-										{item.description}
-									</p>
-								</div>
-							</div>
+				{/* 主要功能菜单 */}
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+					{/* 开始新游戏 */}
+					<button
+						onClick={handleStartNewGame}
+						className="menu-card group hover:scale-105 transition-transform duration-300"
+					>
+						<div className="menu-card-icon bg-gradient-to-br from-green-500 to-emerald-600">
+							<Play className="w-8 h-8 text-white" />
 						</div>
-					))}
+						<h3 className="menu-card-title">开始新游戏</h3>
+						<p className="menu-card-description">
+							踏上财富守护之旅，学习投资理财知识
+						</p>
+					</button>
+
+					{/* 继续游戏 */}
+					<button
+						onClick={handleContinueGame}
+						className="menu-card group hover:scale-105 transition-transform duration-300"
+					>
+						<div className="menu-card-icon bg-gradient-to-br from-blue-500 to-cyan-600">
+							<Play className="w-8 h-8 text-white" />
+						</div>
+						<h3 className="menu-card-title">继续游戏</h3>
+						<p className="menu-card-description">
+							继续之前的冒险，继续积累财富
+						</p>
+					</button>
+
+					{/* 学习中心 */}
+					<button
+						onClick={() => handleNavigateTo('/learning')}
+						className="menu-card group hover:scale-105 transition-transform duration-300"
+					>
+						<div className="menu-card-icon bg-gradient-to-br from-purple-500 to-pink-600">
+							<BookOpen className="w-8 h-8 text-white" />
+						</div>
+						<h3 className="menu-card-title">学习中心</h3>
+						<p className="menu-card-description">
+							学习财商知识，提升投资技能
+						</p>
+					</button>
+
+					{/* 成就系统 */}
+					<button
+						onClick={() => handleNavigateTo('/achievements')}
+						className="menu-card group hover:scale-105 transition-transform duration-300"
+					>
+						<div className="menu-card-icon bg-gradient-to-br from-yellow-500 to-orange-600">
+							<Trophy className="w-8 h-8 text-white" />
+						</div>
+						<h3 className="menu-card-title">成就系统</h3>
+						<p className="menu-card-description">
+							查看获得的成就和徽章
+						</p>
+					</button>
+
+					{/* 游戏设置 */}
+					<button
+						onClick={() => handleNavigateTo('/settings')}
+						className="menu-card group hover:scale-105 transition-transform duration-300"
+					>
+						<div className="menu-card-icon bg-gradient-to-br from-gray-500 to-slate-600">
+							<Settings className="w-8 h-8 text-white" />
+						</div>
+						<h3 className="menu-card-title">游戏设置</h3>
+						<p className="menu-card-description">
+							调整游戏参数和个性化设置
+						</p>
+					</button>
+
+					{/* 游戏帮助 */}
+					<button
+						onClick={() => handleNavigateTo('/help')}
+						className="menu-card group hover:scale-105 transition-transform duration-300"
+					>
+						<div className="menu-card-icon bg-gradient-to-br from-indigo-500 to-blue-600">
+							<HelpCircle className="w-8 h-8 text-white" />
+						</div>
+						<h3 className="menu-card-title">游戏帮助</h3>
+						<p className="menu-card-description">
+							查看游戏规则和操作指南
+						</p>
+					</button>
 				</div>
 
-				{/* 游戏特色说明 */}
-				<div className="mt-16 text-center">
-					<h3 className="text-2xl font-bold text-gray-800 mb-6">
-						游戏特色
-					</h3>
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div className="space-y-3">
-							<div className="text-4xl">🎯</div>
-							<h4 className="text-lg font-semibold text-gray-700">财商教育</h4>
-							<p className="text-gray-600 text-sm">
-								通过游戏化方式学习投资组合管理、风险分散等财商概念
-							</p>
-						</div>
-						<div className="space-y-3">
-							<div className="text-4xl">🃏</div>
-							<h4 className="text-lg font-semibold text-gray-700">卡牌策略</h4>
-							<p className="text-gray-600 text-sm">
-								双槽卡牌系统，资产卡与技能卡配合，制定投资策略
-							</p>
-						</div>
-						<div className="space-y-3">
-							<div className="text-4xl">🗺️</div>
-							<h4 className="text-lg font-semibold text-gray-700">冒险地图</h4>
-							<p className="text-gray-600 text-sm">
-								Roguelike地图设计，挑战市场危机，击败经济Boss
-							</p>
-						</div>
+				{/* 开发测试区域 */}
+				<div className="text-center">
+					<button
+						onClick={() => handleNavigateTo('/test')}
+						className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white rounded-lg hover:from-pink-600 hover:to-rose-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+					>
+						<TestTube className="w-5 h-5" />
+						<span>开发测试页面</span>
+					</button>
+					<p className="text-sm text-gray-500 mt-2">测试核心卡牌系统功能</p>
+				</div>
+
+				{/* 游戏特色介绍 */}
+				<div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+					<div className="text-center p-4">
+						<div className="text-3xl mb-2">🎯</div>
+						<h4 className="font-semibold text-gray-800 mb-2">策略投资</h4>
+						<p className="text-sm text-gray-600">
+							通过卡牌系统学习投资策略，培养财商思维
+						</p>
 					</div>
-				</div>
-
-				{/* 版本信息 */}
-				<div className="mt-12 text-center text-gray-500 text-sm">
-					<p>版本 0.1.0 | 财富守护者：卡牌远征</p>
-					<p className="mt-1">让财商教育变得有趣而有效</p>
+					<div className="text-center p-4">
+						<div className="text-3xl mb-2">🎮</div>
+						<h4 className="font-semibold text-gray-800 mb-2">趣味游戏</h4>
+						<p className="text-sm text-gray-600">
+							将复杂的金融概念转化为有趣的游戏体验
+						</p>
+					</div>
+					<div className="text-center p-4">
+						<div className="text-3xl mb-2">📚</div>
+						<h4 className="font-semibold text-gray-800 mb-2">知识学习</h4>
+						<p className="text-sm text-gray-600">
+							系统学习财商知识，提升投资理财能力
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
