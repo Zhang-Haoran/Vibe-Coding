@@ -224,16 +224,109 @@ export interface GameState {
 	gamePhase: GamePhase;
 	history: GameHistory[];
 	settings: GameSettings;
+	turnState: TurnState;
+	battleState: BattleState;
+	actionPointSystem: ActionPointSystem;
+	gameLoopState: GameLoopState;
 }
 
 // 游戏阶段
 export enum GamePhase {
-	MENU = 'menu',           // 主菜单
-	MAP = 'map',             // 地图选择
-	BATTLE = 'battle',       // 战斗
-	LEARNING = 'learning',   // 学习
-	INVENTORY = 'inventory', // 背包
-	SETTINGS = 'settings'    // 设置
+	PREPARE = 'prepare',      // 准备阶段
+	DRAW = 'draw',            // 抽牌阶段
+	ACTION = 'action',        // 行动阶段
+	EVENT = 'event',          // 事件阶段
+	RESOLUTION = 'resolution', // 结算阶段
+	REWARD = 'reward'         // 奖励阶段
+}
+
+// 游戏回合状态
+export interface TurnState {
+	currentTurn: number;
+	currentPhase: GamePhase;
+	actionPoints: number;
+	maxActionPoints: number;
+	phaseTimeRemaining: number;
+	isPlayerTurn: boolean;
+}
+
+// 战斗状态
+export interface BattleState {
+	isInBattle: boolean;
+	enemy: Enemy | null;
+	battleRound: number;
+	playerHealth: number;
+	enemyHealth: number;
+	battleActions: BattleAction[];
+	battleRewards: BattleReward[];
+}
+
+// 敌人类型
+export interface Enemy {
+	id: string;
+	name: string;
+	level: number;
+	health: number;
+	maxHealth: number;
+	attack: number;
+	defense: number;
+	abilities: EnemyAbility[];
+	weaknesses: string[];
+	resistances: string[];
+	description: string;
+	imageUrl?: string;
+}
+
+// 敌人能力
+export interface EnemyAbility {
+	id: string;
+	name: string;
+	description: string;
+	effect: string;
+	damage: number;
+	cooldown: number;
+	currentCooldown: number;
+}
+
+// 战斗行动
+export interface BattleAction {
+	id: string;
+	type: 'attack' | 'defend' | 'skill' | 'item';
+	cardId?: string;
+	damage: number;
+	healing: number;
+	effects: string[];
+	timestamp: number;
+}
+
+// 战斗奖励
+export interface BattleReward {
+	type: 'coins' | 'cards' | 'experience' | 'items';
+	amount: number;
+	description: string;
+}
+
+// 行动点数系统
+export interface ActionPointSystem {
+	currentPoints: number;
+	maxPoints: number;
+	pointCosts: {
+		playCard: number;
+		useSkill: number;
+		move: number;
+		interact: number;
+	};
+	regenerationRate: number;
+}
+
+// 游戏循环状态
+export interface GameLoopState {
+	isActive: boolean;
+	currentPhase: GamePhase;
+	phaseTimer: number;
+	phaseDuration: number;
+	autoAdvance: boolean;
+	paused: boolean;
 }
 
 // 游戏历史
@@ -263,3 +356,15 @@ export interface ParentalControls {
 	withdrawalDelay: number; // 提现延迟天数
 	reportsEnabled: boolean;
 }
+
+// 游戏动作类型
+export type GameAction = 
+	| { type: 'START_TURN' }
+	| { type: 'ADVANCE_PHASE' }
+	| { type: 'USE_ACTION_POINTS'; amount: number }
+	| { type: 'REGENERATE_ACTION_POINTS' }
+	| { type: 'START_BATTLE'; enemy: Enemy }
+	| { type: 'END_BATTLE' }
+	| { type: 'PERFORM_BATTLE_ACTION'; action: BattleAction }
+	| { type: 'PAUSE_GAME' }
+	| { type: 'RESUME_GAME' };

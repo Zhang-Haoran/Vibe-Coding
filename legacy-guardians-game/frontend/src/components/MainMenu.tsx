@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameStore } from '../stores/gameStore';
-import { Play, BookOpen, Trophy, Settings, HelpCircle, TestTube } from 'lucide-react';
+import { Play, BookOpen, Trophy, Settings, HelpCircle, TestTube, RotateCcw } from 'lucide-react';
 
 const MainMenu: React.FC = () => {
 	const navigate = useNavigate();
@@ -122,15 +122,27 @@ const MainMenu: React.FC = () => {
 				</div>
 
 				{/* 开发测试区域 */}
-				<div className="text-center">
-					<button
-						onClick={() => handleNavigateTo('/test')}
-						className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white rounded-lg hover:from-pink-600 hover:to-rose-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-					>
-						<TestTube className="w-5 h-5" />
-						<span>开发测试页面</span>
-					</button>
-					<p className="text-sm text-gray-500 mt-2">测试核心卡牌系统功能</p>
+				<div className="text-center space-y-4">
+					<div>
+						<button
+							onClick={() => handleNavigateTo('/test')}
+							className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white rounded-lg hover:from-pink-600 hover:to-rose-700 transition-all duration-300 shadow-lg hover:shadow-xl mr-4"
+						>
+							<TestTube className="w-5 h-5" />
+							<span>开发测试页面</span>
+						</button>
+						<button
+							onClick={() => handleNavigateTo('/game-loop-test')}
+							className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-blue-600 text-white rounded-lg hover:from-indigo-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+						>
+							<RotateCcw className="w-5 h-5" />
+							<span>游戏循环测试</span>
+						</button>
+					</div>
+					<div className="text-sm text-gray-500">
+						<span className="mr-4">测试核心卡牌系统功能</span>
+						<span>测试游戏循环与战斗机制</span>
+					</div>
 				</div>
 
 				{/* 游戏特色介绍 */}

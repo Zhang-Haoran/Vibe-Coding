@@ -7,6 +7,7 @@ import LearningCenter from './components/LearningCenter';
 import Portfolio from './components/Portfolio';
 import Settings from './components/Settings';
 import GameTest from './components/GameTest';
+import GameLoopTest from './components/GameLoopTest';
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 					<Route path="/portfolio" element={<Portfolio />} />
 					<Route path="/settings" element={<Settings />} />
 					<Route path="/test" element={<GameTest />} />
+					<Route path="/game-loop-test" element={<GameLoopTest />} />
 				</Routes>
 			</div>
 		</Router>
