@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>财富守护者：卡牌远征</title>
+		<meta name="description" content="财商教育卡牌游戏，让青少年在游戏中学习投资理财" />
+		<meta name="keywords" content="财商教育,卡牌游戏,投资理财,青少年教育" />
+		
+		<!-- 预加载字体 -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		
+		<!-- 游戏图标 -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		
+		<style>
+			/* 加载动画 */
+			.loading-screen {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				z-index: 9999;
+				color: white;
+				font-family: 'Inter', sans-serif;
+			}
+			
+			.loading-logo {
+				font-size: 2.5rem;
+				font-weight: 700;
+				margin-bottom: 1rem;
+				text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+			}
+			
+			.loading-subtitle {
+				font-size: 1.1rem;
+				margin-bottom: 2rem;
+				opacity: 0.9;
+			}
+			
+			.loading-spinner {
+				width: 50px;
+				height: 50px;
+				border: 4px solid rgba(255,255,255,0.3);
+				border-top: 4px solid white;
+				border-radius: 50%;
+				animation: spin 1s linear infinite;
+				margin-bottom: 1rem;
+			}
+			
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+			
+			.loading-text {
+				font-size: 0.9rem;
+				opacity: 0.7;
+			}
+			
+			/* 隐藏加载屏幕 */
+			.loading-screen.hidden {
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity 0.5s ease, visibility 0.5s ease;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 加载屏幕 -->
+		<div id="loading-screen" class="loading-screen">
+			<div class="loading-logo">🎮 财富守护者</div>
+			<div class="loading-subtitle">卡牌远征</div>
+			<div class="loading-spinner"></div>
+			<div class="loading-text">正在加载游戏资源...</div>
+		</div>
+		
+		<!-- React应用根节点 -->
+		<div id="root"></div>
+		
+		<script type="module" src="/src/main.tsx"></script>
+		
+		<script>
+			// 隐藏加载屏幕
+			window.addEventListener('load', () => {
+				setTimeout(() => {
+					const loadingScreen = document.getElementById('loading-screen');
+					if (loadingScreen) {
+						loadingScreen.classList.add('hidden');
+						setTimeout(() => {
+							loadingScreen.style.display = 'none';
+						}, 500);
+					}
+				}, 1000);
+			});
+		</script>
+	</body>
+</html>
